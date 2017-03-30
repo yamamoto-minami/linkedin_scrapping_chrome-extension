@@ -1,0 +1,979 @@
+html {
+    border-radius: 2rem;
+}
+
+body {
+    background: #f9fafb;
+}
+
+.login {
+    background: #173849;
+    width: 16rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.loginform {
+    max-width: 15rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logininputform {
+    height: 45px;
+    background: 0 0;
+    border: none;
+    border-bottom: 1px solid #8c929e;
+    box-shadow: none;
+    border-radius: 0;
+    font-size: 13px;
+    color: #fff;
+    padding-left: 5px;
+    outline: none;
+    width: 100%;
+}
+
+.loginbutton {
+    -webkit-transition: all .1s;
+    border-radius: 2px;
+    color: #FFF;
+    background-color: #00bbb3;
+    border: none;
+    border-bottom: 4px solid #0e2830;
+    height: 42px;
+    font-weight: 700;
+    outline: none;
+    width: 15rem;
+    margin: 0 auto;
+    margin-top: 1rem;
+    display: block;
+    cursor: pointer;
+}
+
+.loginbutton:active {
+    margin-top: 1.2rem;
+    border-bottom: none;
+}
+
+.loginwindowlogo {
+    width: 10rem;
+    height: 2rem;
+    background: url("../img/salesbox_light_logo.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+}
+
+.lighttext {
+    color: white;
+}
+
+.mainview {
+    max-width: 30rem;
+    margin: 0 auto;
+    background: #173849;
+    padding: 2rem;
+    text-align: center;
+}
+
+.mainviewMenu {
+    margin: 0 auto;
+    padding: 2rem;
+    overflow: auto;
+    cursor: pointer;
+    display: block;
+}
+
+.menuIcon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: green;
+    float: left;
+    color: white !important;
+}
+
+.menuText {
+    text-align: left;
+    color: white;
+    padding: 1rem;
+    float: left;
+}
+
+#salesbox-plugin {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+}
+
+#salesbox-plugin * {
+    box-sizing: border-box;
+}
+
+#salesbox-plugin p {
+    margin: 0 0 5px;
+}
+
+#salesbox-plugin a {
+    text-decoration: none;
+}
+
+#salesbox-plugin label {
+    font-weight: bold;
+}
+
+#salesbox-plugin button {
+    font-family: inherit;
+}
+
+#salesbox-plugin input {
+    height: 25px;
+    padding: 2px 12px;
+    border: none;
+    font-size: inherit;
+    font-family: inherit;
+    box-shadow: none;
+    width: 100%;
+    background: none;
+}
+
+#salesbox-plugin input:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+#salesbox-plugin .panel {
+    box-shadow: none;
+    background: transparent;
+    border: none;
+    padding: 10px;
+    font-size: 11px;
+    text-align: start;
+}
+
+#salesbox-plugin .panel .panel-heading {
+    background: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #c0c1c2;
+}
+
+#salesbox-plugin .panel .panel-heading .panel-title {
+    font-size: 12px;
+    border-bottom: 0;
+}
+
+#salesbox-plugin .panel .panel-heading .panel-title a {
+    color: white !important;
+}
+
+#salesbox-plugin .panel .panel-heading .collapse-action {
+    float: right;
+    display: block;
+    color: #9d9d9c;
+}
+
+#salesbox-plugin .panel .panel-body {
+    background: #fff;
+    padding: 10px;
+}
+
+#salesbox-plugin .panel .panel-footer {
+    padding: 10px;
+}
+
+#salesbox-plugin .panel.main-panel {
+    margin-top: 50px;
+    border: none;
+}
+
+#salesbox-plugin .panel.main-panel .panel-heading {
+    background: transparent;
+    border: none;
+    height: 30px;
+    padding: 0px;
+    text-align: center;
+}
+
+#salesbox-plugin .panel.main-panel .panel-heading .action-buttons {
+    float: right;
+    font-size: 18px;
+}
+
+#salesbox-plugin .panel.main-panel .panel-heading .action-buttons ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+
+#salesbox-plugin .panel.main-panel .panel-heading .action-buttons ul li {
+    float: left;
+    margin-right: 10px;
+}
+
+#salesbox-plugin .panel.main-panel .panel-heading .action-buttons ul li a {
+    color: #9d9d9c;
+}
+
+#salesbox-plugin .panel.main-panel .panel-heading .action-buttons ul li:last-child {
+    margin-right: 0px;
+}
+
+#salesbox-plugin .panel.main-panel .panel-body {
+    position: relative;
+    padding-top: 50px;
+    height: 200px;
+    color: #fff;
+}
+
+#salesbox-plugin .panel.main-panel .panel-body .profile h3 {
+    font-size: 20px;
+    margin: 10px 0px;
+    font-weight: inherit;
+}
+
+#salesbox-plugin .panel.main-panel .panel-body .profile p {
+    font-size: 11px;
+}
+
+#salesbox-plugin .panel.main-panel .panel-body.background-contact {
+    background-color: #4e9b89;
+}
+
+#salesbox-plugin .panel.main-panel .panel-footer {
+    background: #fff;
+}
+
+#salesbox-plugin .panel.main-panel .panel-footer .bubble-actions .icon {
+    font-size: 18px;
+    color: #4e9b89;
+    position: relative;
+    width: 40px;
+    margin: auto;
+}
+
+#salesbox-plugin .panel.main-panel .panel-footer .bubble-actions .icon .badge {
+    position: absolute;
+    border-radius: 100%;
+    background: #696969;
+    box-shadow: 1px 1px 1px gray;
+    color: white;
+    font-weight: 500;
+    font-size: 10px;
+    padding: 1px 6px;
+    top: -3px;
+    right: 2px;
+}
+
+#salesbox-plugin .panel.main-panel .panel-footer .bubble-actions p {
+    font-size: 10px;
+    color: #58585a;
+}
+
+#salesbox-plugin .panel.main-panel .panel-footer .bubble-actions .fa-plus-circle {
+    font-size: 24px;
+}
+
+#salesbox-plugin .avatar-container {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: white 0px 0px 0px 10px;
+    border-radius: 100%;
+}
+
+#salesbox-plugin .avatar-container .relationship-ring {
+    height: 82px;
+    width: 82px;
+    box-shadow: #f5b342 0px 0px 0px 5px;
+    background-color: white;
+    margin: auto;
+    border-radius: 100%;
+}
+
+#salesbox-plugin .avatar-large {
+    width: 82px;
+}
+
+#salesbox-plugin .avatar-medium {
+    width: 60px;
+}
+
+#salesbox-plugin .avatar-small {
+    width: 50px;
+}
+
+#salesbox-plugin .table {
+    font-size: 11px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#salesbox-plugin .table tr>td {
+    cursor: pointer;
+    border-top: none;
+    padding: 5px;
+    text-align: left;
+}
+
+#salesbox-plugin .table tr:last-child>td {
+    border-bottom: none;
+}
+
+#salesbox-plugin .warning-action {
+    font-size: 16px;
+}
+
+#salesbox-plugin .contact-team-table .icon {
+    font-size: 14px;
+    color: #9d9d9c;
+}
+
+#salesbox-plugin .contact-team-table a {
+    color: inherit;
+}
+
+#salesbox-plugin .contact-team-table tr>td {
+    border: none;
+    padding: 2px 5px;
+}
+
+#salesbox-plugin .contact-team-table .contact-team-action {
+    font-size: 14px;
+}
+
+#salesbox-plugin .latest-communication-table tr>td {
+    padding: 2px 5px;
+}
+
+#salesbox-plugin .latest-communication-table p {
+    margin: 0px;
+}
+
+#salesbox-plugin .panel.add-panel .panel-heading {
+    background: transparent;
+    border: none;
+}
+
+#salesbox-plugin .panel.add-panel .panel-heading .panel-title {
+    font-weight: bold;
+    color: #33505D;
+    font-size: 16px;
+    margin: 0px;
+}
+
+#salesbox-plugin .panel.add-panel .panel-body {
+    font-size: 12px;
+}
+
+#salesbox-plugin .panel.add-panel .panel-body .avatar-upload {
+    position: relative;
+    height: 80px;
+}
+
+#salesbox-plugin .panel.add-panel .panel-body .avatar-upload .avatar-medium {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+}
+
+#salesbox-plugin .panel.add-panel .panel-body .avatar-upload span {
+    position: absolute;
+    top: 50%;
+    left: 80px;
+    transform: translateY(-50%);
+    font-size: inherit;
+}
+
+#salesbox-plugin .panel.add-panel .panel-body .form-flex .form-group {
+    border-top: 1px solid #ddd;
+    margin-bottom: 0;
+    display: table;
+    width: 100%;
+}
+
+#salesbox-plugin .panel.add-panel .panel-body .form-flex .form-group .control-label {
+    margin: 0;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: middle;
+    text-align: left;
+    display: table-cell;
+    width: 66px;
+}
+
+#salesbox-plugin .panel.add-panel .panel-body .form-flex .form-group .control-input {}
+
+#salesbox-plugin .panel.add-panel .panel-body .form-flex .form-group.save-email-btn {
+    margin-bottom: 5px;
+}
+
+#salesbox-plugin .panel.add-panel .panel-body .form-flex .form-group-addon {
+    display: table;
+    width: 100%;
+}
+
+#salesbox-plugin .panel.add-panel .panel-body .form-flex .form-group-addon .type-action {
+    display: table-cell;
+    width: 20%;
+}
+
+#salesbox-plugin .panel.add-panel .panel-body .form-flex .form-group-addon .input-action {
+    display: table-cell;
+    width: 60%;
+}
+
+#salesbox-plugin .panel.add-panel .panel-body .form-flex .form-group-addon .default-action {
+    display: table-cell;
+    width: 20%;
+    text-align: right;
+}
+
+#salesbox-plugin .panel.add-panel .panel-body .form-flex .form-group-addon .default-action a {
+    color: inherit;
+}
+
+#salesbox-plugin .panel.add-panel .panel-body .form-flex .form-group-addon .default-action a.active {
+    font-weight: bold;
+}
+
+#salesbox-plugin .btn {
+    border-radius: 2px;
+    padding: 2px 10px;
+    min-width: 70px;
+    font-size: 12px;
+}
+
+#salesbox-plugin .btn-outline {
+    border: 1px solid #4e9b89;
+    background: #fff;
+    color: #4e9b89;
+}
+
+#salesbox-plugin .btn-outline:focus {
+    background: #e6e6e6;
+}
+
+#salesbox-plugin .btn-outline:hover {
+    background: #e6e6e6;
+}
+
+#salesbox-plugin .btn-default {
+    border: 1px solid #4e9b89;
+    background: #4e9b89;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 5px;
+}
+
+#salesbox-plugin .btn-default:focus {
+    opacity: 0.7;
+}
+
+#salesbox-plugin .btn-default:hover {
+    opacity: 0.7;
+}
+
+#salesbox-plugin #add-to-opportunity {
+    background: #EF8367;
+    border: 1px solid #EF8367;
+}
+
+#salesbox-plugin #add-to-account {
+    background: #5F6A7B;
+    border: 1px solid #5F6A7B;
+}
+
+#salesbox-plugin .no-padding {
+    padding: 0px;
+}
+
+#salesbox-plugin .padding-top {
+    padding-top: 10px;
+}
+
+#salesbox-plugin .color-green {
+    color: #AACD45 !important;
+}
+
+#salesbox-plugin .background-green {
+    background: #AACD45;
+}
+
+#salesbox-plugin .color-red {
+    color: #D56772 !important;
+}
+
+#salesbox-plugin .background-red {
+    background: #D56772;
+}
+
+#salesbox-plugin .background-gray {
+    background: #ADADAD;
+}
+
+#salesbox-plugin .img-circle {
+    border-radius: 50%;
+}
+
+#salesbox-plugin .text-center {
+    text-align: center;
+}
+
+#salesbox-plugin .text-right {
+    text-align: right;
+}
+
+#salesbox-plugin svg .circle-red {
+    stroke: #e0575a;
+}
+
+#salesbox-plugin svg .circle-red.normal {
+    stroke: rgba(224, 87, 90, 0.25);
+}
+
+#salesbox-plugin svg .circle-green {
+    stroke: #AACD45;
+}
+
+#salesbox-plugin svg .circle-green.normal {
+    stroke: #9ecab1;
+    stroke: rgba(170, 205, 69, 0.3);
+}
+
+#salesbox-plugin svg .circle-yellow {
+    stroke: #F7C06F;
+}
+
+#salesbox-plugin svg .circle-yellow.normal {
+    stroke: #b5c6be;
+    stroke: rgba(247, 192, 111, 0.3);
+}
+
+#salesbox-plugin svg .circle-gray {
+    stroke: #F1F1F1;
+}
+
+#salesbox-plugin svg .circle-gray.normal {
+    stroke: #F1F1F1;
+}
+
+#salesbox-plugin svg .separate-line {
+    stroke-width: 1;
+    stroke: #6d6f71;
+}
+
+#salesbox-plugin svg .progress-bar.thick-stroke {
+    stroke-width: 9px;
+}
+
+#salesbox-plugin svg .text-12 {
+    font-size: 12px;
+}
+
+#salesbox-plugin svg .text-24 {
+    font-size: 24px;
+}
+
+#salesbox-plugin svg .small-text {
+    fill: #5d5d5d;
+}
+
+#salesbox-plugin svg .text-red {
+    fill: #e0575a;
+}
+
+#salesbox-plugin svg .text-green {
+    fill: #AACD45;
+}
+
+#salesbox-plugin svg .text-yellow {
+    fill: #F7C06F;
+}
+
+#salesbox-plugin svg .weight-700 {
+    font-weight: bold;
+}
+
+#salesbox-plugin .dealCircles {
+    position: relative;
+}
+
+#salesbox-plugin .saleCircles {
+    position: relative;
+}
+
+#salesbox-plugin .tooltip-wrapper {
+    position: absolute;
+    display: none;
+    transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    -webkit-transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    -moz-transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+#salesbox-plugin .tooltip-wrapper.show {
+    display: block;
+}
+
+#salesbox-plugin .tooltip-wrapper.top {
+    top: -44px;
+    width: 120%;
+    left: 50%;
+    transform: translateX(-49%);
+}
+
+#salesbox-plugin .tooltip-wrapper.top .tooltip:after {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    border-top: 5px solid #1a1a1a;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#salesbox-plugin .tooltip-wrapper.bottom {
+    top: 118px;
+    width: 120%;
+    left: 50%;
+    transform: translateX(-49%);
+}
+
+#salesbox-plugin .tooltip-wrapper.bottom .tooltip:after {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    border-bottom: 5px solid #1a1a1a;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#salesbox-plugin .tooltip {
+    position: relative;
+    background: #1a1a1a;
+    color: white;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+#salesbox-plugin .dropdown {
+    position: relative;
+}
+
+#salesbox-plugin .dropdown .dropdown-menu {
+    z-index: 999;
+    background: #fff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    display: none;
+    position: absolute;
+    top: 25px;
+    width: 60%;
+    min-width: 250px;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+#salesbox-plugin .dropdown .dropdown-menu li {
+    padding: 5px;
+}
+
+#salesbox-plugin .dropdown .dropdown-menu li:nth-child(2n) {
+    background: #f9fafb;
+}
+
+#salesbox-plugin .dropdown .dropdown-menu li a {
+    color: inherit;
+    width: 100%;
+    display: block;
+}
+
+#salesbox-plugin .dropdown .dropdown-menu li a .bubble {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#salesbox-plugin .dropdown .dropdown-menu li a.has-bubble {
+    position: relative;
+}
+
+#salesbox-plugin .dropdown .dropdown-menu li a.has-bubble:not(.bubble) {
+    margin-left: 50px;
+}
+
+#salesbox-plugin .dropdown .dropdown-menu.dropdown-menu-left {
+    left: 0px;
+}
+
+#salesbox-plugin .dropdown .dropdown-menu.dropdown-menu-right {
+    right: 0px;
+}
+
+#salesbox-plugin .input-group {
+    position: relative;
+    width: 100%;
+}
+
+#salesbox-plugin .input-group .input-group-prefix {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    color: #9d9d9c;
+}
+
+#salesbox-plugin .input-group .input-group-suffix {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    color: #9d9d9c;
+}
+
+#salesbox-plugin .input-group .input-content.has-prefix {
+    margin-left: 20px;
+}
+
+#salesbox-plugin .input-group .input-content.has-suffix {
+    margin-right: 20px;
+}
+
+#salesbox-plugin .hidden {
+    display: none !important;
+}
+
+#salesbox-plugin .square {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+}
+
+#salesbox-plugin .circle {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+#salesbox-plugin .growth {
+    border-radius: 4px;
+    color: #fff;
+    padding: 2px 4px;
+    float: right;
+    margin-right: 10px;
+}
+
+#salesbox-plugin .growth .fa {
+    font-size: 15px;
+}
+
+#salesbox-plugin .growth .growth-down {
+    transform: rotate(135deg);
+    font-size: 15px;
+}
+
+#salesbox-plugin .growth .growth-up {
+    transform: rotate(45deg);
+    font-size: 15px;
+}
+
+#salesbox-plugin .background-profile-blue {
+    background: #2F83EB;
+}
+
+#salesbox-plugin .background-profile-green {
+    background: #A9D231;
+}
+
+#salesbox-plugin .background-profile-red {
+    background: #ed684e;
+}
+
+#salesbox-plugin .background-profile-yellow {
+    background: #F5B342;
+}
+
+#salesbox-plugin .background-relationship-red {
+    background: #ED684E;
+}
+
+#salesbox-plugin .background-relationship-yellow {
+    background: #F5B342;
+}
+
+#salesbox-plugin .background-relationship-green {
+    background: #A9D231;
+}
+
+#salesbox-plugin .save-email {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: url("chrome-extension://__MSG_@@extension_id__/img/save-email.jpg") no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+}
+
+#salesbox-plugin .sb-blue-logo {
+    display: block;
+    width: 170px;
+    height: 50px;
+    background: url("chrome-extension://__MSG_@@extension_id__/img/sb-blue-logo.png") no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+}
+
+#salesbox-plugin .row {
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#salesbox-plugin .row:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+#salesbox-plugin .row+.row {
+    padding-top: 5px;
+}
+
+#salesbox-plugin div[class*="col-"][class*="-1"] {
+    width: 8.333333333%;
+    float: left;
+}
+
+#salesbox-plugin div[class*="col-"][class*="-2"] {
+    width: 16.666666667%;
+    float: left;
+}
+
+#salesbox-plugin div[class*="col-"][class*="-3"] {
+    width: 25%;
+    float: left;
+}
+
+#salesbox-plugin div[class*="col-"][class*="-4"] {
+    width: 33.333333333%;
+    float: left;
+}
+
+#salesbox-plugin div[class*="col-"][class*="-5"] {
+    width: 41.666666667%;
+    float: left;
+}
+
+#salesbox-plugin div[class*="col-"][class*="-6"] {
+    width: 50%;
+    float: left;
+}
+
+#salesbox-plugin div[class*="col-"][class*="-7"] {
+    width: 58.333333333%;
+    float: left;
+}
+
+#salesbox-plugin div[class*="col-"][class*="-8"] {
+    width: 66.666666667%;
+    float: left;
+}
+
+#salesbox-plugin div[class*="col-"][class*="-9"] {
+    width: 75%;
+    float: left;
+}
+
+#salesbox-plugin div[class*="col-"][class*="-10"] {
+    width: 83.333333333%;
+    float: left;
+}
+
+#salesbox-plugin div[class*="col-"][class*="-11"] {
+    width: 91.666666667%;
+    float: left;
+}
+
+#salesbox-plugin div[class*="col-"][class*="-12"] {
+    width: 100%;
+    float: left;
+}
+
+.table.note-table td[width="20%"] .avatar-small {
+    width: 40px;
+}
+
+.table.note-table td[width="80%"] {
+    vertical-align: top;
+}
+
+.table.note-table td[width="80%"] .note {
+    padding: 10px;
+    float: left;
+    width: 80%;
+    background: #E4E5E6;
+    border-radius: 10px;
+    max-width: 100%;
+    position: relative;
+}
+
+.table.note-table td[width="80%"] .note:after {
+    position: absolute;
+    left: -10px;
+    content: "";
+    width: 0;
+    height: 0;
+    top: 12px;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-right: 10px solid #E4E5E6;
+}
+
+.panel .panel-body {
+    transition: height 0.8s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.width-10 {
+    width: 10%;
+}
+
+.width-20 {
+    width: 20%;
+}
+
+.width-60 {
+    width: 60%;
+}
+
+#prospector-box .salebox-logo {
+    width: 18rem;
+    height: 7rem;
+    background: url('chrome-extension://acooeclkjmaodbnmgaaikpohmjdemdnd/img/salesbox_light_logo.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+}
+
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #173849 inset;
+    -webkit-text-fill-color: white !important;
+}
+
+.logout-wrapper {
+    display: none;
+}

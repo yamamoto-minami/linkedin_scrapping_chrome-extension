@@ -1,0 +1,50 @@
+{
+    "manifest_version": 2,
+    "name": "Salesbox CRM",
+    "version": "1.0",
+    "icons": {
+       "16": "/assets/img/logo.png",
+       "64": "/assets/img/logo.png"
+    },
+
+    "permissions": [
+        "tabs",
+        "chrome://favicon/",
+        "https://www.linkedin.com/*",
+        "storage",
+        "<all_urls>"
+    ],
+
+    "background" : {
+        "scripts" : [
+            "/assets/js/jquery-1.11.1.min.js",
+            "/assets/js/popup.js",
+            "/assets/js/background.js"
+        ]
+    },
+
+    "browser_action": {
+        "default_title": "Salesbox CRM",
+        "default_icon": "assets/img/logo.png",
+        "default_popup": "assets/html/popup.html"
+    },
+
+    "content_scripts": [ {
+        "js": [
+            "/assets/js/jquery-1.11.1.min.js",
+            "/assets/js/content_script.js"
+        ],
+        "css" : [
+            // "/assets/css/style.css"
+        ],
+        "matches": [
+            "https://www.linkedin.com/*"
+        ],
+        "run_at" : "document_end"
+    }],
+
+    "web_accessible_resources": [
+        "assets/img/*.*",
+        "assets/css/*.*"
+    ]
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+	    <title>Salesbox</title>
+	    <link rel="stylesheet" type="text/css" href="../css/popup.css">
+			<script src="../js/jquery-1.11.1.min.js"></script>
+			<script src="../js/md5.js"></script>
+			<script src="../js/popup.js"></script>
+	</head>
+	<body class="login">
+		<div class="loginwindowlogo"></div>
+		<div class="login-wrapper">
+			<form id="lform" class="loginform">
+			    <div class="control-group">
+			        <!--<a href="https://go.salesbox.com/" class="pickathome-logo">Salesbox</a>-->
+			        <h1 class="text-center"><a href="https://go.salesbox.com"></a></h1>
+			    </div>
+			    <div class="form-group">
+			        <!-- <label for="username">Username</label> -->
+			        <input type="text" class="logininputform" id="username" placeholder="Username"required="">
+			    </div>
+			    <div class="form-group">
+			        <!-- <label for="password">Password</label> -->
+			        <input type="password" class="logininputform" id="password" placeholder="Password" required="">
+			    </div>
+
+			    <div class="form-action">
+			        <button type="button" class="btn-block btn-login loginbutton" id="btnLogin">Login</button>
+			        <button type="button" class="btn-block btn-login loginbutton"  id="btnNewUser">New user</button>
+			    </div>
+			</form>
+			<div id="llogin" style="display:none;color:#FFF;">
+			    <p>You are now logged into Salesbox chrome extension.</p>
+			</div>
+		</div>
+		<div class="logout-wrapper">
+			<button type="button" class="btn-block btn-login loginbutton"  id="btnLogout">Logout</button>
+		</div>
+	</body>
+</html>
