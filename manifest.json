@@ -34,9 +34,6 @@
             "/assets/js/jquery-1.11.1.min.js",
             "/assets/js/content_script.js"
         ],
-        "css" : [
-            // "/assets/css/style.css"
-        ],
         "matches": [
             "https://www.linkedin.com/*"
         ],

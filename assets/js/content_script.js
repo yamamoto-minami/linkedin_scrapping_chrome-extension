@@ -407,7 +407,9 @@
 	
 		setTimeout(function () {
 			if($("div.pv-contact-info__card-sub-heading").length == 1){
-				$("div.salesbox-showmorewidget").show();
+				if(!$.isEmptyObject(contact)){
+					$("div.salesbox-showmorewidget").show();	
+				}
 			}	else {
 				$("div.salesbox-showmorewidget").hide();
 			}
@@ -497,7 +499,7 @@
 								 	}
 
 								 	var account_data = {
-										avatar: avatarID,
+										avatar: imageUrl.indexOf("http") > -1 ? avatarID : null,
 										additionalEmailList: [],
 										additionalPhoneList: [],
 										email: null,
@@ -593,7 +595,7 @@
 								 	}
 
 								 	var account_data = {
-										avatar: avatarID,
+										avatar: imageUrl.indexOf("http") > -1 ? avatarID : null,
 										additionalEmailList: [],
 										additionalPhoneList: [],
 										email: null,
@@ -768,7 +770,7 @@
 			country = locations[2];
 		}
 
-		if(company == ""){
+		if(company == null){
 			chrome.extension.sendMessage({
 				msg: 'GetUserInfo'
 			}, function (userInfo) {
@@ -793,7 +795,7 @@
 					    success: function(response_avatar){
 					    	var av_id = response_avatar.avatar;
 					    	var contact_data = {
-									avatar: av_id,
+									avatar: logo.indexOf("http") > -1 ? av_id : null,
 									additionalEmailList: [],
 									additionalPhoneList: [],
 									city: city,
@@ -907,7 +909,7 @@
 						    success: function(response_avatar){
 						    	var av_id = response_avatar.avatar;
 						    	var contact_data = {
-										avatar: av_id,
+										avatar: logo.indexOf("http") > -1 ? av_id : null,
 										additionalEmailList: [],
 										additionalPhoneList: [],
 										city: city,
@@ -999,7 +1001,7 @@
 			country = locations[2];
 		}
 
-		if(company == ""){
+		if(company == null){
 			chrome.extension.sendMessage({
 				msg: 'GetUserInfo'
 			}, function (userInfo) {
@@ -1025,7 +1027,7 @@
 					    success: function(response_avatar){
 					    	var av_id = response_avatar.avatar;
 					    	var contact_data = {
-									avatar: av_id,
+									avatar: logo.indexOf("http") > -1 ? av_id : null,
 									additionalEmailList: [],
 									additionalPhoneList: [],
 									city: city,
@@ -1159,7 +1161,7 @@
 						    success: function(response_avatar){
 						    	var av_id = response_avatar.avatar;
 						    	var contact_data = {
-										avatar: av_id,
+										avatar: logo.indexOf("http") > -1 ? av_id : null,
 										additionalEmailList: [],
 										additionalPhoneList: [],
 										city: city,
@@ -1255,7 +1257,7 @@
 			}
 		}
 
-		if(company == ""){
+		if(company == null){
 			chrome.extension.sendMessage({
 				msg: 'GetUserInfo'
 			}, function (userInfo) {
@@ -1280,7 +1282,7 @@
 					    success: function(response_avatar){
 					    	var av_id = response_avatar.avatar;
 					    	var contact_data = {
-									avatar: av_id,
+									avatar: logo.indexOf("http") > -1 ? av_id : null,
 									additionalEmailList: [],
 									additionalPhoneList: [],
 									city: null,
@@ -1374,7 +1376,7 @@
 						    success: function(response_avatar){
 						    	var av_id = response_avatar.avatar;
 						    	var contact_data = {
-										avatar: av_id,
+										avatar: logo.indexOf("http") > -1 ? av_id : null,
 										additionalEmailList: [],
 										additionalPhoneList: [],
 										city: null,
@@ -1450,7 +1452,7 @@
 			}
 		}
 
-		if(company == ""){
+		if(company == null){
 			chrome.extension.sendMessage({
 				msg: 'GetUserInfo'
 			}, function (userInfo) {
@@ -1476,7 +1478,7 @@
 					    success: function(response_avatar){
 					    	var av_id = response_avatar.avatar;
 					    	var contact_data = {
-									avatar: av_id,
+									avatar: logo.indexOf("http") > -1 ? av_id : null,
 									additionalEmailList: [],
 									additionalPhoneList: [],
 									city: null,
@@ -1589,7 +1591,7 @@
 						    success: function(response_avatar){
 						    	var av_id = response_avatar.avatar;
 						    	var contact_data = {
-										avatar: av_id,
+										avatar: logo.indexOf("http") > -1 ? av_id : null,
 										additionalEmailList: [],
 										additionalPhoneList: [],
 										city: null,
@@ -1704,7 +1706,7 @@
 								 	var industry = getIndustry(industries, industry_name);
 
 								 	var account_data = {
-										avatar: avatarID,
+										avatar: logo.indexOf("http") > -1 ? avatarID : null,
 										additionalEmailList: [],
 										additionalPhoneList: [],
 										email: null,
@@ -1784,7 +1786,7 @@
 								 		var size = getSize(sizes, employees_name);
 
 									 	var account_data = {
-											avatar: avatarID,
+											avatar: logo.indexOf("http") > -1 ? avatarID : null,
 											additionalEmailList: [],
 											additionalPhoneList: [],
 											email: null,
@@ -1879,7 +1881,7 @@
 								 	var industry = getIndustry(industries, industry_name);
 
 								 	var account_data = {
-										avatar: avatarID,
+										avatar: logo.indexOf("http") > -1 ? avatarID : null,
 										additionalEmailList: [],
 										additionalPhoneList: [],
 										email: null,
@@ -1979,7 +1981,7 @@
 								 		var size = getSize(sizes, employees_name);
 
 									 	var account_data = {
-											avatar: avatarID,
+											avatar: logo.indexOf("http") > -1 ? avatarID : null,
 											additionalEmailList: [],
 											additionalPhoneList: [],
 											email: null,
@@ -2345,6 +2347,9 @@
 
 	function showPopups(fields) {
 
+		if($.isEmptyObject(contact))
+			return false;
+
 		if(fields == null){
 
 			/// USER HAS NO CUSTOM FIELDS IN SALESBOX CRM //////////
@@ -2562,7 +2567,7 @@
 		    	var avatarID = response.avatar;
 
 		    	var account_data = {
-						avatar: avatarID,
+						avatar: company_logo.indexOf("http") > -1 ? avatarID : null,
 						additionalEmailList: [],
 						additionalPhoneList: [],
 						email: null,
@@ -2628,7 +2633,7 @@
 							    	var ava_id = response_avatar.avatar;
 
 							    	var contact_data = {
-											avatar: ava_id,
+											avatar: contact_logo.indexOf("http") > -1 ? ava_id : null,
 											additionalEmailList: [],
 											additionalPhoneList: [],
 											city: city,
@@ -2705,7 +2710,7 @@
 		    	var avatarID = response.avatar;
 
 		    	var account_data = {
-						avatar: avatarID,
+						avatar: company_logo.indexOf("http") > -1 ? avatarID : null,
 						additionalEmailList: [],
 						additionalPhoneList: [],
 						email: null,
@@ -2771,7 +2776,7 @@
 							    	var ava_id = response_avatar.avatar;
 
 							    	var contact_data = {
-											avatar: ava_id,
+											avatar: contact_logo.indexOf("http") > -1 ? ava_id : null,
 											additionalEmailList: [],
 											additionalPhoneList: [],
 											city: city,
