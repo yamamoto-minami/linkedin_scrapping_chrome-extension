@@ -18,7 +18,7 @@
 				break;
 
 			case 'GetSizeList':
-				var industry_list = "https://production-qa.salesbox.com/administration-v3.0/workData/workData/getSizeTypes?token=" + request.token;
+				var industry_list = "https://production.salesbox.com/administration-v3.0/workData/workData/getSizeTypes?token=" + request.token;
 
 				$.ajax({
 			    type: "GET",
@@ -35,7 +35,7 @@
 				break;
 				
 			case 'GetIndustryList':
-				var industry_list = "https://production-qa.salesbox.com/administration-v3.0/workData/workData/industries?token=" + request.token;
+				var industry_list = "https://production.salesbox.com/administration-v3.0/workData/workData/industries?token=" + request.token;
 
 				$.ajax({
 			    type: "GET",
@@ -59,7 +59,41 @@
 				break;
 
 			case 'GetOrganizationByKey':
-				var url = "https://production-qa.salesbox.com/organisation-v3.0/getOrganisationByLinkedInId?token=" + request.token + "&linkedinProfileId=" + request.data;
+				var url = "https://production.salesbox.com/organisation-v3.0/getOrganisationByLinkedInId?token=" + request.token + "&linkedinProfileId=" + request.data;
+				$.ajax({
+				    type: "GET",
+				    url: url,
+				    contentType: "application/json; charset=utf-8",
+				    dataType: "JSON",
+				    success: function(response){
+				    	sendResponse(response);
+				    },
+				    error: function(errMsg) {
+				    	sendResponse();
+				    }
+				});
+				return true;
+				break;
+
+			case 'GetAllContactLinkedID':
+				var url = "https://production.salesbox.com/contact-v3.0/getAllContactLinkedInId?token=" + request.token;
+				$.ajax({
+				    type: "GET",
+				    url: url,
+				    contentType: "application/json; charset=utf-8",
+				    dataType: "JSON",
+				    success: function(response){
+				    	sendResponse(response);
+				    },
+				    error: function(errMsg) {
+				    	sendResponse();
+				    }
+				});
+				return true;
+				break;
+
+			case 'GetAllAccountLinkedID':
+				var url = "https://production.salesbox.com/organisation-v3.0/getAllOrganisationLinkedInId?token=" + request.token;
 				$.ajax({
 				    type: "GET",
 				    url: url,
@@ -76,7 +110,7 @@
 				break;
 
 			case 'GetContactByKey':
-				var url = "https://production-qa.salesbox.com/contact-v3.0/getContactByLinkedInId?token=" + request.token + "&linkedinProfileId=" + request.data + "&languageCode=en";
+				var url = "https://production.salesbox.com/contact-v3.0/getContactByLinkedInId?token=" + request.token + "&linkedinProfileId=" + request.data + "&languageCode=en";
 				$.ajax({
 				    type: "GET",
 				    url: url,
@@ -96,7 +130,7 @@
 				var data = request.data;
 				var token = request.token;
 
-				var addaccount_url = "https://production-qa.salesbox.com/organisation-v3.0/add?token=" + token;
+				var addaccount_url = "https://production.salesbox.com/organisation-v3.0/add?token=" + token;
 
 				$.ajax({
 				    type: "POST",
@@ -114,11 +148,56 @@
 				return true;
 				break;
 
+			case 'AddLead':
+				var data = request.data;
+				var token = request.token;
+
+				var addlead_url = "https://production.salesbox.com/lead-v3.0/add?token=" + token;
+
+				$.ajax({
+				    type: "POST",
+				    url: addlead_url,
+				    data: JSON.stringify(data),
+				    contentType: "application/json; charset=utf-8",
+				    dataType: "JSON",
+				    success: function(response){
+				    	sendResponse(response);
+				    },
+				    error: function(errMsg) {
+				    	sendResponse();
+				    }
+				});
+				return true;
+				break;
+
+			case 'UpdateCustomField':
+				var data = request.data;
+				var token = request.token;
+				var uuid = request.uuid;
+
+				var updatecustomfield_url = "https://production.salesbox.com/enterprise-v3.0/customFieldValue/addOrEdit?token=" + token + "&objectId=" + uuid;
+
+				$.ajax({
+				    type: "POST",
+				    url: updatecustomfield_url,
+				    data: JSON.stringify(data),
+				    contentType: "application/json; charset=utf-8",
+				    dataType: "JSON",
+				    success: function(response){
+				    	sendResponse(response);
+				    },
+				    error: function(errMsg) {
+				    	sendResponse();
+				    }
+				});
+				return true;
+				break;
+
 			case 'UpdateAccount':
 				var data = request.data;
 				var token = request.token;
 
-				var updateaccount_url = "https://production-qa.salesbox.com/organisation-v3.0/update?token=" + token + "&languageCode=en";
+				var updateaccount_url = "https://production.salesbox.com/organisation-v3.0/update?token=" + token + "&languageCode=en";
 
 				$.ajax({
 				    type: "POST",
@@ -140,7 +219,7 @@
 				var data = request.data;
 				var token = request.token;
 
-				var updatecontact_url = "https://production-qa.salesbox.com/contact-v3.0/update?token=" + token + "&languageCode=en";
+				var updatecontact_url = "https://production.salesbox.com/contact-v3.0/update?token=" + token + "&languageCode=en";
 
 				$.ajax({
 				    type: "POST",
@@ -162,7 +241,7 @@
 				var data = request.data;
 				var token = request.token;
 
-				var addcontact_url = "https://production-qa.salesbox.com/contact-v3.0/add?token=" + token + "&languageCode=en";
+				var addcontact_url = "https://production.salesbox.com/contact-v3.0/add?token=" + token + "&languageCode=en";
 
 				$.ajax({
 			    type: "POST",

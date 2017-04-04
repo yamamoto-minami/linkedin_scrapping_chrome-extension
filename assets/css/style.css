@@ -160,6 +160,7 @@
 	position: absolute;
 	top: 5px;
 	right: 10px;
+	display: none;
 }
 
 .linkedin-salesboxbutton-person-search {
@@ -303,7 +304,7 @@
 .linkedin-salesboxbutton-person-connection ul {
 	position: absolute;
 	display: none;
-  top: calc( 100% - 5px );
+  	top: calc( 100% - 5px );
 	left: -1px;
 	width: calc( 100% + 3px );
 	right: 0;
@@ -321,5 +322,19 @@
 }
 
 .linkedin-salesboxbutton-person-connection ul li:hover {
-  background: #f5f5f5;
+	background: #f5f5f5;
+}
+
+.salesbox-plugin-analyzing{
+	position: fixed;
+    height: initial;
+    background: rgb(232,126,95);
+    padding: 20px 70px;
+    color: white;
+    top: 50%;
+    left: 50%;
+    margin-left: -158px;
+    margin-top: -30px;
+    z-index: 9999;
+    border-radius: 4px;
 }

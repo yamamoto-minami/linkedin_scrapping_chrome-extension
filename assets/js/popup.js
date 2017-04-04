@@ -7,9 +7,9 @@ $(document).ready(function () {
 		}
 	});
 
-
 	$("#btnNewUser").on('click', function () {
 		var url = "https://go.salesbox.com/desktop/#/login?mode=register";
+		window.open(url , '_blank');
 	});
 
 	$("#btnLogout").on('click', function () {
@@ -18,8 +18,8 @@ $(document).ready(function () {
 		$(".login-wrapper").show();
 	});
 
-	$("#btnLogin").on('click', function () {
-
+	$("#lform").on('submit', function (event) {
+		event.preventDefault();
 		var username = $("#username").val();
 		var password = CryptoJS.MD5($("#password").val()).toString();
 
@@ -31,7 +31,7 @@ $(document).ready(function () {
 			"version": "3.0"
 		}
 
-		var login_url = "https://production-qa.salesbox.com/enterprise-v3.0/user/login";
+		var login_url = "https://production.salesbox.com/enterprise-v3.0/user/login";
 
 		$.ajax({
 	    type: "POST",

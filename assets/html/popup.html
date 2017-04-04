@@ -10,22 +10,22 @@
 	<body class="login">
 		<div class="loginwindowlogo"></div>
 		<div class="login-wrapper">
-			<form id="lform" class="loginform">
+			<form id="lform" class="loginform" autocomplete="on">
 			    <div class="control-group">
 			        <!--<a href="https://go.salesbox.com/" class="pickathome-logo">Salesbox</a>-->
 			        <h1 class="text-center"><a href="https://go.salesbox.com"></a></h1>
 			    </div>
 			    <div class="form-group">
 			        <!-- <label for="username">Username</label> -->
-			        <input type="text" class="logininputform" id="username" placeholder="Username"required="">
+			        <input type="text" class="logininputform" id="username" placeholder="Username" required autocomplete="username">
 			    </div>
 			    <div class="form-group">
 			        <!-- <label for="password">Password</label> -->
-			        <input type="password" class="logininputform" id="password" placeholder="Password" required="">
+			        <input type="password" class="logininputform" id="password" placeholder="Password" required autocomplete="password">
 			    </div>
 
 			    <div class="form-action">
-			        <button type="button" class="btn-block btn-login loginbutton" id="btnLogin">Login</button>
+			        <button type="submit" class="btn-block btn-login loginbutton" id="btnLogin">Login</button>
 			        <button type="button" class="btn-block btn-login loginbutton"  id="btnNewUser">New user</button>
 			    </div>
 			</form>
