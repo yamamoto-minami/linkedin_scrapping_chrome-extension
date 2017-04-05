@@ -2081,7 +2081,7 @@
 			var update_field = {};
 			var isCustomFieldClicked = false;
 
-			if(caption == 'email'){
+			if(isEmailPart(caption)){
 
 				contact["email"] = value;
 				var object = {
@@ -2092,7 +2092,7 @@
 				}
 				contact["additionalEmailList"].push(object);
 
-			} else if(caption.indexOf('address') >-1 ){
+			} else if(isAddressPart(caption)){
 
 				var locations = value.split(", ");
 
@@ -2130,11 +2130,11 @@
 				contact["city"] = city;
 				contact["street"] = street;
 
-			} else if(caption.indexOf('website') > -1){
+			} else if(isWebsitePart(caption)){
 
 				organization["web"]= value
 
-			} else if(caption == 'phone'){
+			} else if(isPhonePart(caption)){
 
 				contact["phone"] = value
 				var object = {
@@ -2145,12 +2145,29 @@
 				}
 				contact["additionalPhoneList"].push(object);
 
-			} else if(caption.indexOf('profile') > -1){
+			} else if(isProfilePart(caption)){
 
 				isCustomFieldClicked = true;
 				// Update Skype Custom Fields
 				for(var i = 0 ; i < custom_fields.length; i++){
-					if(custom_fields[i].title.toLowerCase() == "linkedin"){
+					if(custom_fields[i].title.toLowerCase().indexOf("linkedin") > -1){
+						custom_fields[i].customFieldValueDTOList = [];
+						var object = {
+							value : value
+						};
+
+						custom_fields[i].customFieldValueDTOList.push(object);
+						update_field = custom_fields[i];
+						break;
+					}
+				}
+
+			} else if(isSkypePart(caption)){
+
+				isCustomFieldClicked = true;
+				// Update Skype Custom Fields
+				for(var i = 0 ; i < custom_fields.length; i++){
+					if(custom_fields[i].title.toLowerCase().indexOf("skype") > -1){
 						custom_fields[i].customFieldValueDTOList = [];
 						var object = {
 							value : value
@@ -2167,7 +2184,7 @@
 				isCustomFieldClicked = true;
 				// Update Other Custom Fields
 				for(var i = 0 ; i < custom_fields.length; i++){
-					if(custom_fields[i].title.toLowerCase() == caption){
+					if(custom_fields[i].title.toLowerCase().indexOf(caption) > -1 ){
 						custom_fields[i].customFieldValueDTOList = [];
 						var object = {
 							value : value
@@ -2345,6 +2362,82 @@
 		return sizes[sizes.length - 1];
 	}
 
+	function isEmailPart(caption) {
+		var arrays = 	["Email","E-mail","E-mail","E-Mail","Posta elettronica","e-post","Adres e-mail","E-mail","E-mail","Адрес эл. почты","Correo electrónico","E-postadress","E-posta"].toLocaleString().toLowerCase().split(',');
+		if(arrays.indexOf(caption) > -1 )
+			return true;
+		else
+			return false;
+	}
+
+	function isPhonePart(caption) {
+		var arrays = 	["Phone","Telefonnummer","téléphone","Telefonnummer","Telefono","telefon","Telefon","Telefone","telefon","Номер телефона","número de teléfono","Telefonnummer","Telefon Numarası"].toLocaleString().toLowerCase().split(',');
+		if(arrays.indexOf(caption) > -1 )
+			return true;
+		else
+			return false;
+	}
+
+	function isBirthdayPart(caption) {
+		var arrays = 	["Birthday","Fødselsdag","Anniversaire","Geburtstag","Compleanno","fødselsdag","Data urodzenia","Data de nascimento","Zi de naștere","День рождения","Cumpleaños","Födelsedag","Doğum günü"].toLocaleString().toLowerCase().split(',');
+		if(arrays.indexOf(caption) > -1 )
+			return true;
+		else
+			return false;
+	}
+
+	function isSkypePart(caption) {
+		var arrays = 	["im"].toLocaleString().toLowerCase().split(',');
+		if(arrays.indexOf(caption) > -1 )
+			return true;
+		else
+			return false;
+	}
+
+	function isTwitterPart(caption) {
+		var arrays = 	["twitter"].toLocaleString().toLowerCase().split(',');
+		if(arrays.indexOf(caption) > -1 )
+			return true;
+		else
+			return false;
+	}
+
+	function isProfilePart(caption) {
+		var arrays = 	["Profile","profil","Profil de","Profil","Profilo di","profil","Profil użytkownika","Perfil de","Profilul lui","Профиль участника","Perfil de","Profil","Adlı Kullanıcının Profili"].toLocaleString().toLowerCase().split(',');
+		var flag = false;
+		for(var i = 0 ; i < arrays.length; i++){
+			if(caption.indexOf(arrays[i]) > -1) {
+				flag = true;
+				break;
+			}
+		}
+		return flag;
+	}
+
+	function isAddressPart(caption) {
+		var arrays = 	["Address","Adresse","Adresse","Adresse","Indirizzo","adresse","adresse","Endereço","Adresă","Адрес","Dirección","Adress","Adres"].toLocaleString().toLowerCase().split(',');
+		var flag = false;
+		for(var i = 0 ; i < arrays.length; i++){
+			if(caption.indexOf(arrays[i]) > -1) {
+				flag = true;
+				break;
+			}
+		}
+		return flag;
+	}
+
+	function isWebsitePart(caption) {
+		var arrays = 	["Website","Websted","site Web","Webseite","Sito Web","nettsted","Witryna","Site","site web","Веб-сайт","sitio web","Webbplats","Web Sitesi"].toLocaleString().toLowerCase().split(',');
+		var flag = false;
+		for(var i = 0 ; i < arrays.length; i++){
+			if(caption.indexOf(arrays[i]) > -1) {
+				flag = true;
+				break;
+			}
+		}
+		return flag;
+	}
+
 	function showPopups(fields) {
 
 		if($.isEmptyObject(contact))
@@ -2361,60 +2454,53 @@
 				info_objects.eq(i).append('<i class="fa fa-check-circle salesbox-info-check" aria-hidden="true"></i>')
 			}
 
-			if(!$.isEmptyObject(contact)){
-				$("div.pv-profile-section__section-info section.ci-vanity-url").append("<div class='skypecustomurl'><span class='close'>x</span><span class='conainer'>You need to add a LinkedIn URL custom field on Contacts in Salesbox first</span></div>");
+			
+			$("div.pv-profile-section__section-info section.ci-vanity-url").append("<div class='skypecustomurl'><span class='close'>x</span><span class='conainer'>You need to add a LinkedIn URL custom field on Contacts in Salesbox first</span></div>");
 
-				var options = $("div.pv-profile-section__section-info section");
-				if(options.length > 1){
-					for(var i = 1 ; i < options.length; i++){
-						var caption = options.eq(i).find("header").html().trim().toLowerCase();
-						options.eq(i).append("<div class='skypecustomurl'><span class='close'>x</span><span class='conainer'>You need to add a " + capitalizeFirstLetter(caption) + " custom field on Contacts in Salesbox first</span></div>");
+			var options = $("div.pv-profile-section__section-info section");
+			if(options.length > 1){
+				for(var i = 1 ; i < options.length; i++){
+					var caption = options.eq(i).find("header").html().trim().toLowerCase();
+					options.eq(i).append("<div class='skypecustomurl'><span class='close'>x</span><span class='conainer'>You need to add a " + capitalizeFirstLetter(caption) + " custom field on Contacts in Salesbox first</span></div>");
 
-						if(caption == 'email'){
-							options.eq(i).find(".skypecustomurl").remove();
-							if(contact["email"] != null){
-								options.eq(i).find("span.salesbox-info-add").hide();
-								options.eq(i).find("i.salesbox-info-check").show();
-							}
-						} else if(caption.indexOf('address') > -1){
+					if(isEmailPart(caption)){
 
-							options.eq(i).find(".skypecustomurl").remove();
-
-						} else if(caption == 'phone'){
-							options.eq(i).find(".skypecustomurl").remove();
-							if(contact["phone"] != null){
-								options.eq(i).find("span.salesbox-info-add").hide();
-								options.eq(i).find("i.salesbox-info-check").show();	
-							}
-						} else if(caption.indexOf('website') > -1 ){
-							options.eq(i).find(".skypecustomurl").remove();
-							if(organization["web"] != null){
-								options.eq(i).find("span.salesbox-info-add").hide();
-								options.eq(i).find("i.salesbox-info-check").show();
-							}
-						} else if(caption == 'birthday'){
-							options.eq(i).find(".skypecustomurl").remove();
-							options.eq(i).find("span.salesbox-info-add").remove();
-							options.eq(i).find("img.salesbox-info-updating").remove();
-							options.eq(i).find("i.salesbox-info-check").remove();
+						options.eq(i).find(".skypecustomurl").remove();
+						if(contact["email"] != null){
+							options.eq(i).find("span.salesbox-info-add").hide();
+							options.eq(i).find("i.salesbox-info-check").show();
 						}
-					}
-				}
-			} else {
-				var options = $("div.pv-profile-section__section-info section");
-				if(options.length > 1){
-					for(var i = 1 ; i < options.length; i++){
-						var caption = options.eq(i).find("header").html().trim().toLowerCase();
 
-						if(caption == 'birthday'){
-							options.eq(i).find(".skypecustomurl").remove();
-							options.eq(i).find("span.salesbox-info-add").remove();
-							options.eq(i).find("img.salesbox-info-updating").remove();
-							options.eq(i).find("i.salesbox-info-check").remove();
+					} else if(isAddressPart(caption)){
+
+						options.eq(i).find(".skypecustomurl").remove();
+
+					} else if(isPhonePart(caption)){
+					
+						options.eq(i).find(".skypecustomurl").remove();
+						if(contact["phone"] != null){
+							options.eq(i).find("span.salesbox-info-add").hide();
+							options.eq(i).find("i.salesbox-info-check").show();	
 						}
+
+					} else if(isWebsitePart(caption)){
+					
+						options.eq(i).find(".skypecustomurl").remove();
+						if(organization["web"] != null){
+							options.eq(i).find("span.salesbox-info-add").hide();
+							options.eq(i).find("i.salesbox-info-check").show();
+						}
+
+					}	else if((!isProfilePart(caption)) && (!isSkypePart(caption)) && (!isTwitterPart(caption))){
+					
+						options.eq(i).find(".skypecustomurl").remove();
+						options.eq(i).find("span.salesbox-info-add").remove();
+						options.eq(i).find("img.salesbox-info-updating").remove();
+						options.eq(i).find("i.salesbox-info-check").remove();
 					}
 				}
 			}
+
 		} else {
 
 			/// USER HAS CUSTOM FIELDS IN SALESBOX CRM //////////
@@ -2426,85 +2512,96 @@
 				info_objects.eq(i).append('<i class="fa fa-check-circle salesbox-info-check" aria-hidden="true"></i>');
 			}
 
-			if(!$.isEmptyObject(contact)){
-				$("div.pv-profile-section__section-info section.ci-vanity-url").append("<div class='skypecustomurl'><span class='close'>x</span><span class='conainer'>You need to add a LinkedIn URL custom field on Contacts in Salesbox first</span></div>");
 
-				var isLinkeinExisted = checkField(fields, "linkedin");
-				if(isLinkeinExisted == true){
-					$("div.pv-profile-section__section-info section.ci-vanity-url").find(".skypecustomurl").remove();
-					var valueExisted = checkFieldvalue(contact, "linkedin");
-					if(valueExisted == true){
-						$("div.pv-profile-section__section-info section.ci-vanity-url").find("span.salesbox-info-add").hide();
-						$("div.pv-profile-section__section-info section.ci-vanity-url").find("i.salesbox-info-check").show();		
-					}
+			$("div.pv-profile-section__section-info section.ci-vanity-url").append("<div class='skypecustomurl'><span class='close'>x</span><span class='conainer'>You need to add a LinkedIn URL custom field on Contacts in Salesbox first</span></div>");
+
+			var isLinkeinExisted = checkField(fields, "linkedin");
+			if(isLinkeinExisted == true){
+				$("div.pv-profile-section__section-info section.ci-vanity-url").find(".skypecustomurl").remove();
+				var valueExisted = checkFieldvalue(contact, "linkedin");
+				if(valueExisted == true){
+					$("div.pv-profile-section__section-info section.ci-vanity-url").find("span.salesbox-info-add").hide();
+					$("div.pv-profile-section__section-info section.ci-vanity-url").find("i.salesbox-info-check").show();		
 				}
+			}
 
-				var options = $("div.pv-profile-section__section-info section");
-				if(options.length > 1){
-					for(var i = 1 ; i < options.length; i++){
-						var caption = options.eq(i).find("header").html().trim().toLowerCase();
-						options.eq(i).append("<div class='skypecustomurl'><span class='close'>x</span><span class='conainer'>You need to add a " + capitalizeFirstLetter(caption) + " custom field on Contacts in Salesbox first</span></div>");
+			var options = $("div.pv-profile-section__section-info section");
+			if(options.length > 1){
+				for(var i = 1 ; i < options.length; i++){
+					var caption = options.eq(i).find("header").html().trim().toLowerCase();
+					options.eq(i).append("<div class='skypecustomurl'><span class='close'>x</span><span class='conainer'>You need to add a " + capitalizeFirstLetter(caption) + " custom field on Contacts in Salesbox first</span></div>");
 
-						if(caption == 'email'){
-							options.eq(i).find(".skypecustomurl").remove();
-							if(contact["email"] != null){
-								options.eq(i).find("span.salesbox-info-add").hide();
-								options.eq(i).find("i.salesbox-info-check").show();
-							}
-						} else if(caption.indexOf('address') > -1){
-							options.eq(i).find(".skypecustomurl").remove();
-							var value = options.eq(i).find("header").next().text();
+					if(isEmailPart(caption)){
 
-							if(value.indexOf(contact["country"]) > -1){
-								options.eq(i).find("span.salesbox-info-add").hide();
-								options.eq(i).find("i.salesbox-info-check").show();
-							}
-							if(contact["email"] != null){
-								options.eq(i).find("span.salesbox-info-add").hide();
-								options.eq(i).find("i.salesbox-info-check").show();
-							}
-
-						} else if(caption == 'phone'){
-							options.eq(i).find(".skypecustomurl").remove();
-							if(contact["phone"] != null){
-								options.eq(i).find("span.salesbox-info-add").hide();
-								options.eq(i).find("i.salesbox-info-check").show();	
-							}
-						} else if(caption.indexOf('website') > -1 ){
-							options.eq(i).find(".skypecustomurl").remove();
-							if(organization["web"] != null){
-								options.eq(i).find("span.salesbox-info-add").hide();
-								options.eq(i).find("i.salesbox-info-check").show();
-							}
-						} else if(caption == 'birthday'){
-							options.eq(i).find(".skypecustomurl").remove();
-							options.eq(i).find("span.salesbox-info-add").remove();
-							options.eq(i).find("img.salesbox-info-updating").remove();
-							options.eq(i).find("i.salesbox-info-check").remove();
-						}	else {
-							var isExisted = checkField(fields, caption);
-							if(isExisted == true){
-								options.eq(i).find(".skypecustomurl").remove();
-								var valueExisted = checkFieldvalue(contact, caption);
-								if(valueExisted == true){
-									options.eq(i).find("span.salesbox-info-add").hide();
-									options.eq(i).find("i.salesbox-info-check").show();		
-								}
-							}
+						options.eq(i).find(".skypecustomurl").remove();
+						if(contact["email"] != null){
+							options.eq(i).find("span.salesbox-info-add").hide();
+							options.eq(i).find("i.salesbox-info-check").show();
 						}
-					}
-				}
-			} else {
-				var options = $("div.pv-profile-section__section-info section");
-				if(options.length > 1){
-					for(var i = 1 ; i < options.length; i++){
-						var caption = options.eq(i).find("header").html().trim().toLowerCase();
 
-						if(caption == 'birthday'){
+					} else if(isAddressPart(caption)){
+					
+						options.eq(i).find(".skypecustomurl").remove();
+						var value = options.eq(i).find("header").next().text();
+
+						if(value.indexOf(contact["country"]) > -1){
+							options.eq(i).find("span.salesbox-info-add").hide();
+							options.eq(i).find("i.salesbox-info-check").show();
+						}
+
+					} else if(isPhonePart(caption)){
+					
+						options.eq(i).find(".skypecustomurl").remove();
+						if(contact["phone"] != null){
+							options.eq(i).find("span.salesbox-info-add").hide();
+							options.eq(i).find("i.salesbox-info-check").show();	
+						}
+
+					} else if(isWebsitePart(caption)){
+					
+						options.eq(i).find(".skypecustomurl").remove();
+						if(organization["web"] != null){
+							options.eq(i).find("span.salesbox-info-add").hide();
+							options.eq(i).find("i.salesbox-info-check").show();
+						}
+
+					} else{
+
+						if((!isSkypePart(caption)) && (!isTwitterPart(caption))){
+
 							options.eq(i).find(".skypecustomurl").remove();
 							options.eq(i).find("span.salesbox-info-add").remove();
 							options.eq(i).find("img.salesbox-info-updating").remove();
 							options.eq(i).find("i.salesbox-info-check").remove();
+
+						} else {
+
+							if(isSkypePart(caption)){
+
+								var isExisted = checkField(fields, 'skype');
+
+								if(isExisted == true){
+									options.eq(i).find(".skypecustomurl").remove();
+									var valueExisted = checkFieldvalue(contact, 'skype');
+									if(valueExisted == true){
+										options.eq(i).find("span.salesbox-info-add").hide();
+										options.eq(i).find("i.salesbox-info-check").show();		
+									}
+								}
+
+							} else {
+
+								var isExisted = checkField(fields, 'twitter');
+								if(isExisted == true){
+									options.eq(i).find(".skypecustomurl").remove();
+									var valueExisted = checkFieldvalue(contact, 'twitter');
+									if(valueExisted == true){
+										options.eq(i).find("span.salesbox-info-add").hide();
+										options.eq(i).find("i.salesbox-info-check").show();		
+									}
+								}
+
+							}
 						}
 					}
 				}
@@ -2515,7 +2612,7 @@
 	function checkFieldvalue(contact, name) {
 		var flag = false;
 		for(var i = 0 ; i < contact.customFieldDTOList.length; i++){
-			if(contact.customFieldDTOList[i].title.toLowerCase() == name){
+			if(contact.customFieldDTOList[i].title.toLowerCase().indexOf(name) > -1){
 				if(contact.customFieldDTOList[i].customFieldValueDTOList.length > 0){
 					if(contact.customFieldDTOList[i].customFieldValueDTOList[0].value != ""){
 						flag = true;
@@ -2530,7 +2627,7 @@
 	function checkField(fields, name) {
 		var flag = false;
 		for(var i = 0 ;i < fields.length; i++){
-			if(fields[i].title.toLowerCase() == name){
+			if(fields[i].title.toLowerCase().indexOf(name) > -1){
 				flag = true;
 				break;
 			}
