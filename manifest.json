@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Salesbox CRM",
-    "version": "4.11.11",
+    "version": "4.11.15",
     "icons": {
        "16": "/assets/img/logo.png",
        "64": "/assets/img/logo.png"

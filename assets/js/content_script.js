@@ -8,7 +8,8 @@
 	var accountLinkedInArray = [];
 
 	var real_timer ,adding_timer ;
-	var current_location = window.location.href;
+	// var current_location = window.location.href;
+	var current_location = "";
 
 	var $head = $("head");
 	var $css = "<link href=" + "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" + " rel='stylesheet'>";
@@ -28,19 +29,6 @@
 	}, function (response) {
 		var status = response.status;
 		if(status == true) {
-			
-			var location = window.location.href;
-			if(location.indexOf('https://www.linkedin.com/company-beta') > -1) {
-				addSalesBoxButton("company");
-			} else if(location.indexOf('https://www.linkedin.com/in') > -1){
-				addSalesBoxButton("user");
-			} else if(location.indexOf('https://www.linkedin.com/search/results/people') > -1){
-				addSalesBoxButton("search-people")
-			} else if(location.indexOf('https://www.linkedin.com/search/results/companies') > -1) {
-				addSalesBoxButton("search-company")
-			} else if(location.indexOf("https://www.linkedin.com/mynetwork/invite-connect/connections/" > -1)){
-				addSalesBoxButton("mynetwork");
-			}
 
 			real_timer = setInterval(function () {
 
@@ -82,17 +70,22 @@
 				msg: "GetAllContactLinkedID",
 				token: token
 			}, function (contact_ids) {
-				if(contact_ids.existingProfileIds.length > 0){
-					contactLinkedInArray = contact_ids.existingProfileIds;	
+				if(!$.isEmptyObject(contact_ids)){
+					if(contact_ids.existingProfileIds.length > 0){
+						contactLinkedInArray = contact_ids.existingProfileIds;	
+					}
 				}
 				
 				chrome.extension.sendMessage({
 					msg: "GetAllAccountLinkedID",
 					token: token
 				}, function (account_ids) {
-					if(account_ids.existingProfileIds.length > 0 ){
-						accountLinkedInArray = account_ids.existingProfileIds;
+					if(!$.isEmptyObject(account_ids)){
+						if(account_ids.existingProfileIds.length > 0 ){
+							accountLinkedInArray = account_ids.existingProfileIds;
+						}	
 					}
+					
 					adding_timer = setInterval(function () {
 						if(type == 'company'){
 
@@ -225,14 +218,14 @@
 						} else if(type == 'search-people'){
 
 							////// CUSTOMER IS IN SEARCH RESULT (PEOPLE) /////
-							var parent = $("li.search-result__occluded-item div.search-result__actions");
+							var parent = $("li.search-result div.search-result__actions");
 
 							if(parent.length > 0){
 
 								for(var i = 0 ;  i < parent.length ; i++){
 									if(parent.eq(i).find("span.linkedin-salesboxbutton-person-search").length == 0){
 
-										var key = parent.eq(i).parents(".search-result__occluded-item").find(".search-result__result-link").attr("href");
+										var key = parent.eq(i).parents(".search-result").find(".search-result__result-link").attr("href");
 
 										if(contactLinkedInArray.length > 0) {
 											var flag = checkContactAccountExisted(contactLinkedInArray, key);
@@ -282,14 +275,14 @@
 						} else if(type == 'search-company'){
 
 							////// CUSTOMER IS IN SEARCH RESULT (COMPANY) /////
-							var parent = $("li.search-result__occluded-item div.search-result__actions");
+							var parent = $("li.search-result div.search-result__actions");
 
 							if(parent.length > 0){
 
 								for(var i = 0 ;  i < parent.length ; i++){
 									if(parent.eq(i).find("span.linkedin-salesboxbutton-company-search").length == 0){
 
-										var key = parent.eq(i).parents(".search-result__occluded-item").find(".search-result__result-link").attr("href");
+										var key = parent.eq(i).parents(".search-result").find(".search-result__result-link").attr("href");
 
 										if(accountLinkedInArray.length > 0){
 											var flag = checkContactAccountExisted(accountLinkedInArray, key);
@@ -727,14 +720,14 @@
 
 	$(document).on('click', "#add_contact_search_people", function () {
 
-		var button = $(this).parents(".search-result__occluded-item").find(".linkedin-salesboxbutton-person-search");
-		var gif_image = $(this).parents(".search-result__occluded-item").find(".salesbox-ajax-company");
+		var button = $(this).parents(".search-result").find(".linkedin-salesboxbutton-person-search");
+		var gif_image = $(this).parents(".search-result").find(".salesbox-ajax-company");
 		button.hide();
 		gif_image.show();
 
 		var at_list = ["at","في","在","在","na","på","op","à","beim","di","a","で","...에서","pada","på","w","Em","la","в","a","på","sa","At"]
 
-		var parent = $(this).parents(".search-result__occluded-item");
+		var parent = $(this).parents(".search-result");
 
 		var key = parent.find(".search-result__result-link").attr("href");
 
@@ -958,14 +951,14 @@
 	
 	$(document).on('click', "#add_lead_search_people", function () {
 
-		var button = $(this).parents(".search-result__occluded-item").find(".linkedin-salesboxbutton-person-search");
-		var gif_image = $(this).parents(".search-result__occluded-item").find(".salesbox-ajax-company");
+		var button = $(this).parents(".search-result").find(".linkedin-salesboxbutton-person-search");
+		var gif_image = $(this).parents(".search-result").find(".salesbox-ajax-company");
 		button.hide();
 		gif_image.show();
 
 		var at_list = ["at","في","在","在","na","på","op","à","beim","di","a","で","...에서","pada","på","w","Em","la","в","a","på","sa","At"]
 
-		var parent = $(this).parents(".search-result__occluded-item");
+		var parent = $(this).parents(".search-result");
 
 		var key = parent.find(".search-result__result-link").attr("href");
 
@@ -1657,18 +1650,18 @@
 	});
 
 	$(document).on('click', "#add_account_search_company", function () {
-		var button = $(this).parents(".search-result__occluded-item").find(".linkedin-salesboxbutton-company-search");
+		var button = $(this).parents(".search-result").find(".linkedin-salesboxbutton-company-search");
 
-		var gif_image = $(this).parents(".search-result__occluded-item").find(".salesbox-ajax-company");
+		var gif_image = $(this).parents(".search-result").find(".salesbox-ajax-company");
 
 		button.hide();
 		gif_image.show();
 
-		var company_name = $(this).parents(".search-result__occluded-item").find(".search-result__title").text().trim();
-		var industry_name = $(this).parents(".search-result__occluded-item").find(".subline-level-1.search-result__truncate").html();
-		var employees_name = $(this).parents(".search-result__occluded-item").find(".subline-level-2.search-result__truncate").html();
-		var logo = $(this).parents(".search-result__occluded-item").find(".search-result__image img").attr("src");
-		var key = $(this).parents(".search-result__occluded-item").find(".search-result__result-link").attr("href");
+		var company_name = $(this).parents(".search-result").find(".search-result__title").text().trim();
+		var industry_name = $(this).parents(".search-result").find(".subline-level-1.search-result__truncate").html();
+		var employees_name = $(this).parents(".search-result").find(".subline-level-2.search-result__truncate").html();
+		var logo = $(this).parents(".search-result").find(".search-result__image img").attr("src");
+		var key = $(this).parents(".search-result").find(".search-result__result-link").attr("href");
 		if(employees_name != undefined){
 			employees_name = employees_name.split("employee")[0];
 		}
@@ -1831,18 +1824,18 @@
 	});
 	
 	$(document).on('click', "#add_lead_search_company", function () {
-		var button = $(this).parents(".search-result__occluded-item").find(".linkedin-salesboxbutton-company-search");
+		var button = $(this).parents(".search-result").find(".linkedin-salesboxbutton-company-search");
 
-		var gif_image = $(this).parents(".search-result__occluded-item").find(".salesbox-ajax-company");
+		var gif_image = $(this).parents(".search-result").find(".salesbox-ajax-company");
 
 		button.hide();
 		gif_image.show();
 
-		var company_name = $(this).parents(".search-result__occluded-item").find(".search-result__title").text().trim();
-		var industry_name = $(this).parents(".search-result__occluded-item").find(".subline-level-1.search-result__truncate").html();
-		var employees_name = $(this).parents(".search-result__occluded-item").find(".subline-level-2.search-result__truncate").html();
-		var logo = $(this).parents(".search-result__occluded-item").find(".search-result__image img").attr("src");
-		var key = $(this).parents(".search-result__occluded-item").find(".search-result__result-link").attr("href");
+		var company_name = $(this).parents(".search-result").find(".search-result__title").text().trim();
+		var industry_name = $(this).parents(".search-result").find(".subline-level-1.search-result__truncate").html();
+		var employees_name = $(this).parents(".search-result").find(".subline-level-2.search-result__truncate").html();
+		var logo = $(this).parents(".search-result").find(".search-result__image img").attr("src");
+		var key = $(this).parents(".search-result").find(".search-result__result-link").attr("href");
 		if(employees_name != undefined){
 			employees_name = employees_name.split("employee")[0];
 		}
@@ -2094,7 +2087,7 @@
 
 			} else if(isAddressPart(caption)){
 
-				var locations = value.split(", ");
+				var locations = value.split(", ");salesbox-info-add
 
 				var country = null;
 				var region = null;
@@ -2136,6 +2129,17 @@
 
 			} else if(isPhonePart(caption)){
 
+				var plus_mark = false;
+				var value = add.parent().find(".pv-contact-info__ci-container").text().trim();
+				if(value[0] == '+'){
+					plus_mark = true;
+				}
+
+				value = value.replace(/[^\d.-]/g, '');
+				if(plus_mark){
+					value = '+' + value;
+				}
+				
 				contact["phone"] = value
 				var object = {
 					value: value,
@@ -2224,7 +2228,7 @@
 					});
 				});
 			} else {
-				if(caption.indexOf('website') > -1){
+				if(isWebsitePart(caption)){
 					chrome.extension.sendMessage({
 						msg: "GetUserInfo"
 					}, function (response) {
